@@ -1,0 +1,23 @@
+---
+- name: Update Debian servers and reboot if necessary
+  hosts: debian_servers
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: Update apt repo and cache
+      ansible.builtin.apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Upgrade all packages
+      ansible.builtin.apt:
+        upgrade: dist
+        autoremove: yes
+        autoclean: yes
+
+    - name: Check if a reboot is required
+      ansible.builtin.stat:
+        path: /var/run/reboot-required
+        get_checksum: no
+      register: reboot_file
