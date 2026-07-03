@@ -1,6 +1,6 @@
 ---
 - name: Update Proxmox inventory and reboot if necessary
-  hosts: debian_servers
+  hosts: prox_servers
   become: yes
   gather_facts: yes
 
