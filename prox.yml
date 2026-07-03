@@ -1,5 +1,5 @@
 ---
-- name: Update Debian servers and reboot if necessary
+- name: Update Proxmox inventory and reboot if necessary
   hosts: debian_servers
   become: yes
   gather_facts: yes
